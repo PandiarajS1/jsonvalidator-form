@@ -18,21 +18,92 @@ A full-stack web application that validates JSON schema-based forms and renders 
   - Backend on [Render](https://render.com/)
 
 ---
+---
 
-## 🧠 Project Overview
+## ✨ Features & Key Files
 
-This app allows users to define a `JSON Schema` to validate forms. When the form is submitted, the schema and data are sent to the backend for validation. The backend responds with success or error messages.
+### 🔧 JSON Schema Form Validation (Frontend)
 
-The schema must follow standard [JSON Schema](https://json-schema.org/) format using keywords like:
-- `type`
-- `required`
-- `properties`
-- `minLength`, `maxLength`
-- `enum`
-- `pattern`
-- `minimum`, `maximum`
+- Dynamically renders form fields based on user-submitted JSON schema
+- Performs frontend validation based on:
+  - `type`, `required`
+  - `pattern`, `enum`
+  - `minLength`, `maxLength`
+  - `minimum`, `maximum`
+
+📁 Relevant Files:
+- `frontend/src/App.jsx`: Main component with form and submission logic
+- `frontend/src/components/FormRenderer.jsx`: Dynamically renders form fields from schema
+- `frontend/src/utils/validator.js`: Schema-based validation logic
 
 ---
+
+### 🔁 Backend Validation & Response (Node.js Express)
+
+- Receives schema and validates data
+- Returns structured error messages or success
+
+📁 Relevant Files:
+- `backend/index.js`: Main Express app
+- `backend/routes/formSchemaRoute.js`: Route handler for POST `/formschema`
+- `backend/validators/schemaValidator.js`: Core JSON schema validation logic
+
+---
+
+### 📁 Load Sample Schema
+
+- A **sample JSON schema file** is provided in:
+  
+  ```
+  frontend/src/assets/sampleSchema.json
+  ```
+
+- The form page includes a button to **load sample schema** directly into the editor for user convenience.
+
+📁 Relevant File:
+- `frontend/src/components/SchemaEditor.jsx`: Fetches and loads sample schema on user request
+
+---
+
+### 📤 Export Schema Feature
+
+- Users can **export the currently edited JSON schema** as a downloadable `.json` file.
+
+📁 Relevant Files:
+- `frontend/src/components/ExportButton.jsx`: Handles file export logic
+- Utilizes `FileSaver` or equivalent logic via `Blob` and `URL.createObjectURL`
+
+---
+
+### 🔄 Live Preview & Error Display
+
+- Real-time form updates as schema changes
+- Displays specific error messages under each invalid field
+- Success message on valid submission
+
+---
+
+### 📡 API Endpoint
+
+- **POST** `/formschema` at `https://jsonvalidator-form.onrender.com/formschema`
+- Payload: `{ "Schema": { ... } }`
+- Returns: `{ success: true | false, errors: [ ... ] }`
+
+---
+
+### 🧪 Try It Live
+
+👉 [https://jsonvalidator-form.vercel.app](https://jsonvalidator-form.vercel.app)
+
+Includes:
+- Editable schema textarea
+- Auto-filled sample schema button
+- Export current schema
+- Validation preview on submit
+
+---
+
+
 
 ## 📦 Technologies Used
 
@@ -165,16 +236,6 @@ jsonvalidator-form/
 │
 └── README.md
 ```
-
----
-
-## 🧪 API Endpoint
-
-**POST** `/formschema`
-
-- **URL**: `https://jsonvalidator-form.onrender.com/formschema`
-- **Payload**: `{ "Schema": { ...your schema... } }`
-- **Returns**: JSON response with validation result
 
 ---
 
