@@ -14,6 +14,7 @@ const SchemaField = () => {
       const response = await uploadSchema(JSON.parse(schemaText));
       setSchemaId(response._id);
     } catch (error) {
+      console.log("JSON Submission Error",error);
       alert("invalid JSON");
     }
   };
