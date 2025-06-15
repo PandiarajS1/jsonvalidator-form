@@ -1,0 +1,58 @@
+const SampleFormSchema = {
+  type: "object",
+  required: [
+    "fullName",
+    "email",
+    "password",
+    "age",
+    "gender",
+    "phone",
+    "country",
+    "agreeToTerms",
+  ],
+  properties: {
+    fullName: {
+      type: "string",
+      minLength: 3,
+      maxLength: 50,
+    },
+    email: {
+      type: "string",
+      pattern: "^[\\w.-]+@[\\w-]+\\.[a-zA-Z]{2,}$",
+    },
+    password: {
+      type: "string",
+      minLength: 8,
+      pattern: "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#\\$%\\^&\\*]).{8,}$",
+    },
+    confirmPassword: {
+      type: "string",
+      minLength: 8,
+    },
+    age: {
+      type: "number",
+      minimum: 18,
+      maximum: 99,
+    },
+    gender: {
+      type: "string",
+      enum: ["Male", "Female", "Other"],
+    },
+    phone: {
+      type: "string",
+      pattern: "^\\d{10}$",
+    },
+    country: {
+      type: "string",
+      enum: ["India", "USA", "Canada", "UK", "Australia"],
+    },
+    newsletter: {
+      type: "boolean",
+    },
+    agreeToTerms: {
+      type: "boolean",
+    },
+  },
+};
+
+export const SampleFormSchemaString = JSON.stringify(SampleFormSchema, null, 2);
