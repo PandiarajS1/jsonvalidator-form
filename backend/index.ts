@@ -16,7 +16,7 @@ const allowedOrigin = process.env.ALLOWED_ORIGIN || "*";
 
 app.use(
   cors({
-    origin: "https://jsonvalidator-form.vercel.app/",
+    origin: allowedOrigin,
     credentials: true,
   })
 );
