@@ -16,7 +16,7 @@ const allowedOrigin = process.env.ALLOWED_ORIGIN || "*";
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://jsonvalidator-form.vercel.app/",
     credentials: true,
   })
 );
